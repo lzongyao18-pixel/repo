@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李宗耀 — TikTok跨境电商运营专家</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #4a4a6a;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --surface: #f8fafc;
+    --border: #e2e8f0;
+    --card-bg: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --card-hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --nav-bg: rgba(255,255,255,0.85);
+    --tag-bg: #f1f5f9;
+    --tag-text: #334155;
+    --max-width: 960px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Navigation ── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { font-weight: 700; font-size: 17px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .lang-toggle {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 4px 14px; font-size: 13px;
+    cursor: pointer; color: var(--text-secondary); font-weight: 500;
+    transition: all .2s;
+    margin-left: 8px;
+  }
+  .lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 12px; }
+    .lang-toggle { font-size: 12px; padding: 3px 10px; margin-left: 0; }
+    .nav-logo { font-size: 15px; }
+  }
+
+  /* ── Sections ── */
+  section { padding: 80px 24px; }
+  .section-inner { max-width: var(--max-width); margin: 0 auto; }
+  .section-tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; margin-bottom: 40px; color: var(--text); }
+  @media (max-width: 640px) { section { padding: 56px 20px; } .section-title { font-size: 22px; margin-bottom: 28px; } }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 120px 24px 80px;
+  }
+  .hero-inner { max-width: var(--max-width); margin: 0 auto; }
+  .hero h1 { font-size: 44px; font-weight: 800; line-height: 1.25; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .hero h1 span { color: var(--accent); }
+  .hero .subtitle { font-size: 18px; color: var(--text-secondary); margin-bottom: 24px; }
+  .hero .highlights { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .hero .highlight {
+    background: var(--accent-light); color: var(--accent);
+    padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  }
+  .hero .contact-row { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: var(--muted); }
+  .hero .contact-row .item { display: flex; align-items: center; gap: 6px; }
+  .hero .contact-row .icon { width: 16px; height: 16px; opacity: 0.6; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 100px 20px 56px; }
+    .hero h1 { font-size: 30px; }
+    .hero .subtitle { font-size: 16px; }
+  }
+
+  /* ── About / Strengths ── */
+  .strength-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .strength-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow .3s;
+  }
+  .strength-card:hover { box-shadow: var(--card-hover-shadow); }
+  .strength-card .num { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+  .strength-card .label { font-size: 14px; color: var(--text-secondary); font-weight: 600; }
+
+  /* ── Experience Timeline ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 4px; bottom: 4px;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 36px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -25px; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-company { font-size: 18px; font-weight: 700; }
+  .timeline-role { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 2px; }
+  .timeline-date { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .timeline-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; box-shadow: var(--card-shadow); }
+  .timeline-content ul { list-style: none; }
+  .timeline-content li { font-size: 14px; color: var(--text-secondary); padding: 5px 0; position: relative; padding-left: 18px; }
+  .timeline-content li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 6px; }
+  .timeline-highlight {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #fef3c7; color: #92400e; font-size: 12px;
+    padding: 2px 10px; border-radius: 10px; margin: 8px 0 0 0;
+    font-weight: 600;
+  }
+
+  /* ── Skills ── */
+  .skill-group { margin-bottom: 28px; }
+  .skill-group h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag { background: var(--tag-bg); color: var(--tag-text); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+
+  /* ── Education ── */
+  .edu-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; box-shadow: var(--card-shadow); display: flex; gap: 20px; align-items: flex-start; }
+  .edu-icon { width: 44px; height: 44px; background: var(--accent-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .edu-info h4 { font-weight: 700; margin-bottom: 4px; }
+  .edu-info .major { color: var(--accent); font-size: 14px; font-weight: 600; }
+  .edu-info .date { color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+  .edu-info .honors { font-size: 13px; color: var(--text-secondary); }
+
+  /* ── Contact ── */
+  .contact-section { background: var(--surface); }
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 32px; }
+  .contact-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text-secondary); }
+  .contact-item .c-icon { width: 40px; height: 40px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+
+  /* ── Footer ── */
+  footer { text-align: center; padding: 32px 24px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--border); }
+
+  /* ── Fade-in animation ── */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Bilingual visibility ── */
+  body [lang] { display: none; }
+  html[data-lang="zh"] [lang="zh"],
+  html[data-lang="en"] [lang="en"] { display: revert; }
+  html[data-lang="zh"] [lang="zh"].inline,
+  html[data-lang="en"] [lang="en"].inline { display: inline; }
+  html[data-lang="zh"] [lang="zh"].flex,
+  html[data-lang="en"] [lang="en"].flex { display: flex; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Li Zongyao</a>
+    <ul class="nav-links">
+      <li><a href="#about" lang="zh">关于</a><a href="#about" lang="en">About</a></li>
+      <li><a href="#experience" lang="zh">经历</a><a href="#experience" lang="en">Experience</a></li>
+      <li><a href="#skills" lang="zh">技能</a><a href="#skills" lang="en">Skills</a></li>
+      <li><a href="#contact" lang="zh">联系</a><a href="#contact" lang="en">Contact</a></li>
+      <li><button class="lang-toggle" id="langToggle" aria-label="Switch language">EN</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>
+      <span lang="zh">李宗耀</span><span lang="en">Li Zongyao</span>
+    </h1>
+    <p class="subtitle" lang="zh">TikTok 跨境电商运营专家 &nbsp;|&nbsp; 3年电商 + 1年+ TikTok跨境实操</p>
+    <p class="subtitle" lang="en">TikTok Cross-border E-Commerce Specialist &nbsp;|&nbsp; 3 Years E-Commerce + 1 Year TikTok Cross-border</p>
+    <div class="highlights">
+      <span class="highlight">TikTok Shop</span>
+      <span class="highlight" lang="zh">美区 & 东南亚市场</span>
+      <span class="highlight" lang="en">US & SEA Markets</span>
+      <span class="highlight" lang="zh">0-1 新店起盘</span>
+      <span class="highlight" lang="en">0-1 Store Launch</span>
+      <span class="highlight">GMV MAX & ADS</span>
+      <span class="highlight" lang="zh">达人建联与自播</span>
+      <span class="highlight" lang="en">KOL Outreach & Live</span>
+      <span class="highlight" lang="zh">Best Seller 爆款</span>
+      <span class="highlight" lang="en">Best Seller Products</span>
+    </div>
+    <div class="contact-row">
+      <span class="item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 27<span lang="zh">岁</span><span lang="en"> y.o.</span></span>
+      <span class="item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span lang="zh">杭州</span><span lang="en">Hangzhou</span></span>
+      <span class="item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg> 1250147294@qq.com</span>
+      <span class="item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> 13812276865</span>
+    </div>
+  </div>
+</section>
+
+<!-- About / Core Strengths -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag" lang="zh">核心优势</div>
+    <div class="section-tag" lang="en">Core Strengths</div>
+    <h2 class="section-title" lang="zh">深耕 TikTok 跨境赛道，全域运营驱动增长</h2>
+    <h2 class="section-title" lang="en">Deep TikTok Expertise, Full-Funnel E-Commerce Growth</h2>
+    <div class="strength-grid">
+      <div class="strength-card fade-in">
+        <div class="num">3<span lang="zh">年</span><span lang="en">yr</span></div>
+        <div class="label" lang="zh">电商运营经验</div>
+        <div class="label" lang="en">E-Commerce Ops Experience</div>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="num">$60K</div>
+        <div class="label" lang="zh">店铺峰值月销</div>
+        <div class="label" lang="en">Peak Monthly Store Sales</div>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="num">100+</div>
+        <div class="label" lang="zh">单月达人建联数</div>
+        <div class="label" lang="en">Monthly KOL Outreach</div>
+      </div>
+      <div class="strength-card fade-in">
+        <div class="num">15+</div>
+        <div class="label" lang="zh">成功孵化爆款链接</div>
+        <div class="label" lang="en">Best-Seller Links Incubated</div>
+      </div>
+    </div>
+    <div style="margin-top:24px; padding:20px 24px; background:var(--card-bg); border:1px solid var(--border); border-radius:12px; box-shadow:var(--card-shadow);">
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.9;" lang="zh">
+        拥有 <strong>3年电商运营经验</strong>、<strong>1年+ TikTok 跨境全链路实操经验</strong>，深耕 TK 赛道，熟悉平台生态、流量规则与市场用户偏好。具备成熟的 <strong>0-1 新店起盘</strong>、爆款孵化及全域流量运营能力。精通短视频内容创作、海外达人建联、（东南亚）自播与达播双模式运营，熟练掌握 GMV MAX、ADS 精细化投流。擅长市场竞品拆解与数据复盘优化，曾独立完成（美区）TK 新店从冷启动到盈利闭环，成功打造多款类目 Best Seller 爆款，店铺峰值月销达 6W 美金。具备小型团队统筹管理与项目高效落地能力。
+      </p>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.9;" lang="en">
+        <strong>3 years of e-commerce operations</strong> with <strong>1+ year of TikTok cross-border full-funnel experience</strong>. Deep understanding of TikTok's platform ecosystem, traffic dynamics, and consumer preferences. Proven track record in <strong>0-to-1 store launches</strong>, viral product incubation, and omnichannel traffic operations. Skilled in short-video content strategy, overseas KOL outreach, dual-mode livestream operations (self-operated + KOL-driven), and precision advertising via GMV MAX & ADS. Expert in competitive analysis and data-driven optimization. Independently launched a US-region TikTok store from cold start to profitability, creating multiple category Best Sellers with peak monthly sales of $60K. Experienced in leading compact teams and scaling operations efficiently.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience" style="background:var(--surface);">
+  <div class="section-inner">
+    <div class="section-tag" lang="zh">工作经历</div>
+    <div class="section-tag" lang="en">Work Experience</div>
+    <h2 class="section-title" lang="zh">4 段实战履历，深耕电商运营</h2>
+    <h2 class="section-title" lang="en">4 Roles Across E-Commerce Operations</h2>
+
+    <div class="timeline">
+
+      <!-- KINGMAO -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-company">KINGMAO INTERNATIONAL(S) PTE LTD</div>
+        <div class="timeline-role" lang="zh">TK运营（新加坡保健品类目）</div>
+        <div class="timeline-role" lang="en">TikTok Operations (Singapore Health Supplements)</div>
+        <div class="timeline-date">2026.03 — <span lang="zh">至今</span><span lang="en">Present</span></div>
+        <div class="timeline-content">
+          <ul lang="zh">
+            <li>统筹店铺日常运营与售后全流程，常态化监控评分指标，维持店铺评分在 <strong>4.5-4.8 高分区间</strong></li>
+            <li>搭建系统化运营复盘台账，数据驱动选品、投放、内容及达人策略迭代</li>
+            <li>从零搭建新加坡本土达人全流程标准化 SOP，单月建联 <strong>100+ 达人</strong>，累计产出 <strong>300+ 优质带货素材</strong></li>
+            <li>依托"达人种草+精细化运营"组合策略，新品最高跻身新加坡保健品排行榜 <strong>第 5 名</strong></li>
+          </ul>
+          <ul lang="en">
+            <li>Managed daily store operations and full after-sales process, maintained store rating at <strong>4.5-4.8</strong></li>
+            <li>Built systematic operations review dashboards for data-driven merchandising, advertising, content, and KOL strategies</li>
+            <li>Built Singapore local KOL outreach SOP from scratch — <strong>100+ KOLs/month</strong>, <strong>300+ video assets</strong> produced</li>
+            <li>Achieved <strong>Top 5</strong> ranking in Singapore health supplements category via "KOL seeding + precision ops" strategy</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 仕珂珠宝 -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-company" lang="zh">杭州仕珂珠宝有限公司</div>
+        <div class="timeline-company" lang="en">Hangzhou Shike Jewelry Co., Ltd</div>
+        <div class="timeline-role" lang="zh">TK运营（新加坡珠宝配饰类目）</div>
+        <div class="timeline-role" lang="en">TikTok Operations (Singapore Jewelry & Accessories)</div>
+        <div class="timeline-date">2025.11 — 2026.03</div>
+        <div class="timeline-content">
+          <ul lang="zh">
+            <li>精准对接 TAP 机构，高效建联 <strong>L7 头部带货达人</strong>，快速完成新店 0-1 冷启动，单月实现 <strong>3W 新币 GMV</strong></li>
+            <li>批量布局中腰部达人矩阵，通过常态化建联、寄样合作快速打响品牌本地知名度</li>
+            <li>主导搭建自播间并落地运营，开播 1 个月实现直播间 <strong>1K 新币有效动销</strong>，形成"达播拓流量、自播稳转化"双渠道体系</li>
+          </ul>
+          <ul lang="en">
+            <li>Partnered with TAP agencies to onboard <strong>L7 top-tier KOLs</strong>, achieving 0-to-1 cold start with <strong>S$30K monthly GMV</strong></li>
+            <li>Built mid-tier KOL matrix through systematic outreach and product seeding, rapidly establishing local brand awareness</li>
+            <li>Built and operated in-house livestream, generating <strong>S$1K monthly sales</strong> in the first month — created a dual-channel "KOL for reach, self-live for conversion" system</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 润晖箱包 -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-company" lang="zh">杭州润晖箱包有限公司</div>
+        <div class="timeline-company" lang="en">Hangzhou Runhui Luggage Co., Ltd</div>
+        <div class="timeline-role" lang="zh">运营主管（TK美区 + 拼多多）</div>
+        <div class="timeline-role" lang="en">Operations Lead (TikTok US + Pinduoduo)</div>
+        <div class="timeline-date">2024.05 — 2025.10</div>
+        <div class="timeline-content">
+          <ul lang="zh">
+            <li>TK 新店 0-1 起盘，组建 3 人专项团队，锁定午餐包为核心品类，3 个月月 GMV 突破 <strong>2W 美金</strong>，峰值月销 <strong>6W 美金</strong></li>
+            <li>成功获评 <strong>TikTok Silver Star Seller</strong>，孵化 2 条核心爆款链接，跻身美区 Lunch Bag 类目 Best Seller（第 7、12 位）</li>
+            <li>产出 <strong>2 条 50W+ 曝光</strong>、10 余条 10W+ 曝光短视频，店铺粉丝 1200+，持续输送免费自然流量</li>
+            <li>运用 ADS + GMV MAX 双工具组合，将店铺整体 ROI 从 6 稳步提升至 <strong>10</strong></li>
+            <li>拼多多 2 家店铺 4 个月内 GMV 从 3W 拉升至 <strong>70W</strong>，孵化 3 款爆款，核心单品全公司销量突破 <strong>10W+</strong></li>
+          </ul>
+          <ul lang="en">
+            <li>0-to-1 launch of TikTok US store with a 3-person team; locked in lunch bags as core category; reached <strong>$20K monthly GMV</strong> in 3 months, peaking at <strong>$60K</strong></li>
+            <li>Awarded <strong>TikTok Silver Star Seller</strong>; incubated 2 Best Seller links ranking #7 and #12 in US Lunch Bag category</li>
+            <li>Produced <strong>2 videos with 500K+ views</strong> and 10+ with 100K+ views; grew store followers to 1,200+ with sustained organic traffic</li>
+            <li>Leveraged ADS + GMV MAX to drive store-wide ROI from 6 to <strong>10</strong></li>
+            <li>Grew 2 Pinduoduo stores from ¥30K to <strong>¥700K GMV</strong> in 4 months; incubated 3 hit products, with a flagship SKU exceeding <strong>100K units</strong> company-wide</li>
+          </ul>
+          <div class="timeline-highlight" lang="zh">项目净利润率 15%</div>
+          <div class="timeline-highlight" lang="en">Project net margin: 15%</div>
+        </div>
+      </div>
+
+      <!-- 名卓文化 -->
+      <div class="timeline-item fade-in">
+        <div class="timeline-company" lang="zh">无锡名卓文化用品有限公司</div>
+        <div class="timeline-company" lang="en">Wuxi Mingzhuo Stationery Co., Ltd</div>
+        <div class="timeline-role" lang="zh">拼多多电商运营（文具类目）</div>
+        <div class="timeline-role" lang="en">Pinduoduo E-Commerce Operations (Stationery)</div>
+        <div class="timeline-date">2023.05 — 2024.05</div>
+        <div class="timeline-content">
+          <ul lang="zh">
+            <li>常态化巡检 3 家店铺 30+ 核心链接，实时监控转化率、GMV、投产比等数据并落地优化</li>
+            <li>拆解竞品 SKU 布局与定价体系，针对性制定竞品打击方案，精准抢占市场流量</li>
+            <li>累计打造 <strong>5W+ 销量链接 13 条</strong>、<strong>10W+ 销量链接 5 条</strong>、<strong>50W+ 销量标杆链接 1 条</strong></li>
+            <li>老店月销从 30W+ 提升至 50W+，潜力店从 10W+ 飙升至 80W+，全新店铺 3 个月快速起量至 45W+</li>
+          </ul>
+          <ul lang="en">
+            <li>Monitored 30+ core listings across 3 stores, tracking conversion rates, GMV, and ROI in real time</li>
+            <li>Conducted competitive SKU and pricing analysis to strategically capture market share</li>
+            <li>Incubated <strong>13 links with 50K+ sales</strong>, <strong>5 links with 100K+ sales</strong>, and <strong>1 flagship link with 500K+ sales</strong></li>
+            <li>Grew mature store from ¥300K to ¥500K/month, growth store from ¥100K to ¥800K/month, new store to ¥450K in 3 months</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag" lang="zh">工作技能</div>
+    <div class="section-tag" lang="en">Skills & Tools</div>
+    <h2 class="section-title" lang="zh">多维度技能组合</h2>
+    <h2 class="section-title" lang="en">Multi-Dimensional Skill Set</h2>
+
+    <div class="skill-group fade-in">
+      <h4 lang="zh">电商平台 & 投流工具</h4>
+      <h4 lang="en">E-Commerce Platforms & Ad Tools</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">TikTok Shop</span>
+        <span class="skill-tag">GMV MAX</span>
+        <span class="skill-tag">ADS</span>
+        <span class="skill-tag">DAS</span>
+        <span class="skill-tag" lang="zh">拼多多</span>
+        <span class="skill-tag" lang="en">Pinduoduo</span>
+        <span class="skill-tag" lang="zh">自播间搭建</span>
+        <span class="skill-tag" lang="en">Live-Stream Setup</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <h4 lang="zh">达人运营 & 内容</h4>
+      <h4 lang="en">KOL Operations & Content</h4>
+      <div class="skill-tags">
+        <span class="skill-tag" lang="zh">海外达人建联</span>
+        <span class="skill-tag" lang="en">KOL Outreach</span>
+        <span class="skill-tag" lang="zh">短视频内容创作</span>
+        <span class="skill-tag" lang="en">Short-Video Content</span>
+        <span class="skill-tag" lang="zh">达播 & 自播</span>
+        <span class="skill-tag" lang="en">KOL & Self Live</span>
+        <span class="skill-tag">TAP <span lang="zh">机构对接</span><span lang="en">Partner Mgmt</span></span>
+        <span class="skill-tag" lang="zh">Brief 脚本打磨</span>
+        <span class="skill-tag" lang="en">Brief & Script Writing</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <h4 lang="zh">数据与复盘</h4>
+      <h4 lang="en">Data & Analytics</h4>
+      <div class="skill-tags">
+        <span class="skill-tag" lang="zh">竞品拆解</span>
+        <span class="skill-tag" lang="en">Competitive Analysis</span>
+        <span class="skill-tag" lang="zh">数据复盘优化</span>
+        <span class="skill-tag" lang="en">Data-Driven Optimization</span>
+        <span class="skill-tag" lang="zh">飞书多维表格</span>
+        <span class="skill-tag" lang="en">Lark Base</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag" lang="zh">可视化报表</span>
+        <span class="skill-tag" lang="en">Visual Dashboards</span>
+      </div>
+    </div>
+
+    <div class="skill-group fade-in">
+      <h4 lang="zh">AI 工具 & 其他</h4>
+      <h4 lang="en">AI Tools & Others</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">Claude</span>
+        <span class="skill-tag">Gemini</span>
+        <span class="skill-tag" lang="zh">剪映视频剪辑</span>
+        <span class="skill-tag" lang="en">CapCut Editing</span>
+        <span class="skill-tag">CET-4</span>
+        <span class="skill-tag" lang="zh">英文商务沟通</span>
+        <span class="skill-tag" lang="en">Business English</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section style="background:var(--surface);">
+  <div class="section-inner">
+    <div class="section-tag" lang="zh">教育经历</div>
+    <div class="section-tag" lang="en">Education</div>
+    <h2 class="section-title" lang="zh">学术背景</h2>
+    <h2 class="section-title" lang="en">Academic Background</h2>
+    <div class="edu-card fade-in">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-info">
+        <h4 lang="zh">西南科技大学</h4>
+        <h4 lang="en">Southwest University of Science and Technology</h4>
+        <div class="major" lang="zh">汉语言文学 · 本科</div>
+        <div class="major" lang="en">Chinese Language & Literature · Bachelor's</div>
+        <div class="date">2018.09 — 2022.07</div>
+        <div class="honors" lang="zh">校级优秀学生干部 · 校级奖学金 · 2 项校级荣誉及多项院级荣誉</div>
+        <div class="honors" lang="en">Outstanding Student Leader · University Scholarship · 2 university-level and multiple departmental honors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="section-tag" lang="zh">联系方式</div>
+    <div class="section-tag" lang="en">Get in Touch</div>
+    <h2 class="section-title" lang="zh">期待与您沟通</h2>
+    <h2 class="section-title" lang="en">Let's Connect</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="c-icon">📧</div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);" lang="zh">邮箱</div>
+          <div style="font-size:12px;color:var(--muted);" lang="en">Email</div>
+          <strong>1250147294@qq.com</strong>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📱</div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);" lang="zh">电话</div>
+          <div style="font-size:12px;color:var(--muted);" lang="en">Phone</div>
+          <strong>13812276865</strong>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="c-icon">📍</div>
+        <div>
+          <div style="font-size:12px;color:var(--muted);" lang="zh">期望工作地</div>
+          <div style="font-size:12px;color:var(--muted);" lang="en">Preferred Location</div>
+          <strong lang="zh">杭州</strong>
+          <strong lang="en">Hangzhou, China</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Li Zongyao. <span lang="zh">保留所有权利。</span><span lang="en">All rights reserved.</span></p>
+</footer>
+
+<script>
+  // Language toggle
+  const html = document.documentElement;
+  const langBtn = document.getElementById('langToggle');
+  let currentLang = 'zh';
+  html.setAttribute('data-lang', currentLang);
+
+  langBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    html.setAttribute('data-lang', currentLang);
+    langBtn.textContent = currentLang === 'zh' ? 'EN' : '中文';
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+  });
+
+  // Scroll-based fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Initial visible check
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.fade-in').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  });
+</script>
+</body>
+</html>
