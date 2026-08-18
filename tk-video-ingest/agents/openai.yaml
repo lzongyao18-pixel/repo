@@ -1,0 +1,4 @@
+interface:
+  display_name: "TikTok 视频素材收录"
+  short_description: "下载、转写、本土化并安全归档 TikTok 视频素材"
+  default_prompt: "Use $tk-video-ingest to collect a TikTok video into my local material library."
